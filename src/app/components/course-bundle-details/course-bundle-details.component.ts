@@ -76,7 +76,11 @@ export class CourseBundleDetailsComponent implements OnInit {
         querySnapshot.forEach(doc=>{
           coupon=doc.data();
         });
-        this.origPrice=this.courseBundle.price_offer;
+        this.courseBundle.validities=this.courseBundle.validities.map(a=>{
+          a.price=a.price-a.price*coupon.discount/100;
+          return a;
+        })
+
         this.discount=coupon.discount;
         $("#coupon-error").hide();
         this.couponApplied=true;
@@ -113,8 +117,10 @@ export class CourseBundleDetailsComponent implements OnInit {
   }
 
   cancelCoupon(){
-    this.price=this.courseBundle.validities[this.index].price;
-    this.couponApplied=false;
+    firebase.firestore().doc("course_bundle/"+this.courseBundle.id).get().then(doc=>{
+      this.courseBundle.validities=doc.data().validities;
+      this.couponApplied=false;
+    })
   }
 
   ngOnDestroy(){

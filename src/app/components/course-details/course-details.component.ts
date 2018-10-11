@@ -74,7 +74,6 @@ export class CourseDetailsComponent implements OnInit {
   price:number;
 
   index:number;
-
   discount:number;
   
   constructor(private route:ActivatedRoute, private courseService:CourseService, private authService:AuthService, private instructorService:InstructorService, private router:Router, private dialog:MatDialog) {
@@ -99,7 +98,6 @@ export class CourseDetailsComponent implements OnInit {
 
     this.subscription_course=this.courseService.getCourseById(this.id).subscribe(course=>{
       this.course=course;
-
       this.authService.afAuth.auth.onAuthStateChanged(user=>{
         if(user){
           firebase.firestore().doc("students/"+user.uid+"/my_courses/"+this.id).get().then(doc=>{
@@ -145,7 +143,6 @@ export class CourseDetailsComponent implements OnInit {
       }
       this.rating=Array(Math.floor(this.ratingExact)).fill(1);
       this.rating_void=Array(5-Math.floor(this.ratingExact)).fill(1);
-      console.log(this.rating_void)
     });
 
     this.loop();
@@ -217,6 +214,10 @@ export class CourseDetailsComponent implements OnInit {
         querySnapshot.forEach(doc=>{
           if(doc.data().code===this.couponCode){
             this.discount=doc.data().discount;
+            this.course.validities=this.course.validities.map(a=>{
+              a.price=a.price-a.price*this.discount/100;
+              return a;
+            })
             this.couponApplied=true;
             $("#coupon-invalid").hide();
             c++;
@@ -248,8 +249,10 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   cancelCoupon(){
-    this.price=this.course.validities[this.index].price;
-    this.couponApplied=false;
+    firebase.firestore().doc("courses/"+this.course.id).get().then(doc=>{
+      this.course.validities=doc.data().validities;
+      this.couponApplied=false;
+    })
   }
 
 }

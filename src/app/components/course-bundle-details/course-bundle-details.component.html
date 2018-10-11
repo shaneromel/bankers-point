@@ -1,5 +1,7 @@
 <div class="container-fluid">
 	<div id="course-desc-cont" class="container">
+		<h1 style="text-align:center;">{{courseBundle?.name}}</h1>
+		<br>
 		<div class="row">
 			<div class="col-lg-5">
 				<img src="{{courseBundle?.image}}" class="img-fluid">
@@ -16,7 +18,7 @@
               <button *ngFor="let val of courseBundle?.validities; index as i" (click)="validitySelected(i)" type="button" [ngClass]="index==i ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'" >{{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}</button>
 						</div> -->
 						<ul class="list-group">
-								<li *ngFor="let val of courseBundle?.validities; index as i" class="list-group-item justify-content-between">{{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}
+								<li *ngFor="let val of courseBundle?.validities; index as i" class="list-group-item justify-content-between">{{val.validity}} days | &#8377;{{val.price | number:'0.0-0'}}
 									<button (click)="pay(i)" class="btn btn-success">Buy Now</button>
 								</li>
 						</ul>
@@ -48,7 +50,6 @@
 		</div>
 		<div style="margin-top:10px" class="row">
 			<div class="col-12">
-					<h3>{{courseBundle?.name}}</h3>
 					<p class="text-muted">{{courseBundle?.description}}</p>
 			</div>
 		</div>

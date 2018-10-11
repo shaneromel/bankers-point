@@ -23,7 +23,7 @@
               <button *ngFor="let val of course?.validities; index as i" type="button" class="list-group-item list-group-item-action">{{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}</button>
             </div> -->
             <ul class="list-group">
-              <li *ngFor="let val of course?.validities; index as i" class="list-group-item justify-content-between">{{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}
+              <li *ngFor="let val of course?.validities; index as i" class="list-group-item justify-content-between">{{val.validity}} days | &#8377;{{val.price | number:'0.0-0'}}
                 <button (click)="pay(i)" class="btn btn-success">Buy Now</button>
               </li>
             </ul>
