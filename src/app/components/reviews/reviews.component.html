@@ -1,0 +1,66 @@
+<div class="row" style="padding-top:25px; min-height:500px" >
+  <ngx-loading [show]="loading" ></ngx-loading>
+  <!-- <div class="row">
+    <div id="rating-disp" class="col-lg-6 offset-lg-3">
+      <div class="row">
+        <div class="col-lg-6">
+            <h1 class="text-warning" style="text-align:center; font-size:75px;">{{ratingsAvg}}</h1>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div style="padding-bottom:20px;" class="container-fluid">
+      <div id="review-cont" class="col-lg-8 offset-lg-2">
+          <div class="row">
+            <div class="col-md-5">
+              <div id="star-display" class="container">
+                  <h1 style="font-size:100px;" class="text-warning" >{{ratingsAvg | number:'1.1-1'}}</h1>
+                  <p>
+                    <span *ngFor="let i of ratingsWhole" style="font-size:18px;" class="fa fa-star checked"></span>
+                    <span *ngFor="let i of ratingsVoid" style="font-size:18px;" class="fa fa-star"></span>
+                  </p>
+                  <p class="text-muted" >{{ratings?.length}} Rating(s)</p>
+              </div>
+            </div>
+            <div id="rating-display" class="col-md-6 offset-md-1">
+              <div class="container">
+                  <ul style="font-size:20px;" >
+                      <li *ngFor="let i of avgRatings; index as j" style="display:block;" >
+                          <div class="row">
+                            <div class="col-md-3">
+                                <span style="font-size:18px; padding-bottom:5px;" style="font-size:25px;">{{j+1}}</span>
+                                <span style="font-size:18px;" class="fa fa-star checked"></span>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" [ngStyle]="avgRatings[j]" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{avgRatings[j].width}}</div>
+                                </div>
+                            </div>
+                          </div>
+                      </li>
+                    </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <div style="padding:25px;" class="container">
+      <ng-container *ngFor="let i of ratings; index as n" >
+          <div class="row">
+            <div class="col-lg-1">
+                <i style="font-size:75px" class="fa fa-user-circle" aria-hidden="true"></i>
+            </div>
+            <div style="padding-top:10px;" class="col-lg-11">
+              <h5>{{students[n]?.name}}</h5>
+                <span *ngFor="let j of rate[n]" class="fa fa-star checked"></span>
+                <span *ngFor="let j of rateVoid[n]" class="fa fa-star"></span>
+                <small class="text-muted" ></small>
+              <p>{{i.message}}</p>
+            </div>
+          </div>
+          <hr>
+        </ng-container>
+  </div>
+</div>

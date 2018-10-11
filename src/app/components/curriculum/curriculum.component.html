@@ -1,0 +1,14 @@
+<div id="curriculum" style="min-height:450px;" class="row">
+  <ngx-loading [show]="loading" ></ngx-loading>
+  <div style="padding-top:25px;" class="container">
+      <ng-container *ngFor="let i of sections; index as n" >
+          <h5>{{i.title}}</h5>
+          <hr>
+          <ng-container>
+              <ul>
+                <li *ngFor="let j of lec[n]; index as c" class="text-muted">{{c+1}}. {{j.title}}</li>
+              </ul>
+          </ng-container>
+      </ng-container>
+  </div>
+</div>

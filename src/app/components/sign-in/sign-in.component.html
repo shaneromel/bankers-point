@@ -1,0 +1,62 @@
+<div class="container-fluid auth-background">
+    <div class="container ">
+        <div class="row authContainer">
+            <div class="col-md-6">
+                <div class="container formContainer authBlock">
+                  <h1 class="authTitle" >Sign In</h1>
+                  <form (ngSubmit)="login()" >
+                    <div class="form-group">
+                      <label for="signinEmail">Email address</label>
+                      <input type="email" class="form-control" id="signinEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email" name="loginEmail" >
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="signinPass" >Password</label>
+                      <input type="password" class="form-control" aria-describedby="passHelp" id="signinPass" placeholder="Enter password" [(ngModel)]="password" name="loginPassword" >
+                      <small data-toggle="modal" data-target="#reset-pass" id="passHelp" class="form-text text-muted">Forgot Password?</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                  <div id="signin-error-alert" style="display:none;" class="alert alert-danger" role="alert"></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="container formContainer authBlock">
+                  <h1 class="authTitle" >Don't have an account?</h1>
+                  <button type="button" [routerLink]="['/signup']" class="btn btn-primary btn-lg btn-block">Create Account</button>
+                </div>
+              </div>
+        </div>
+      </div>
+</div>
+
+<div class="modal fade" id="reset-pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reset password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+                <label for="reset-email">Enter your email address</label>
+                <input type="email" class="form-control" id="reset-email" [(ngModel)]="resetEmail" name="reset-email" aria-describedby="emailHelp" placeholder="Enter email">
+                <div id="reset-alert" class="alert alert-success" role="alert">
+                  A password reset link has been successfully sent to your mail. Follow the instructions given to proceed further. 
+                </div>
+                <div id="reset-error-alert" class="alert alert-danger" role="alert">
+                  <strong>There was some error: </strong>{{resetError}}
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="resetPass()" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

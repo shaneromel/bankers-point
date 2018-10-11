@@ -1,0 +1,105 @@
+.agileits_top_menu {
+    padding-top: 0.5em;
+    padding-right: 2em;
+    padding-bottom: 0.1em;
+    background:#1ed88b;
+}
+.w3l_header_left{
+    transition: .5s ease-in;
+	-webkit-transition: .5s ease-in;
+	-moz-transition: .5s ease-in;
+	-o-transition: .5s ease-in;
+	-ms-transition: .5s ease-in;
+}
+.w3l_header_left{
+	float:left;
+	margin: .3em 0 0;
+}
+.w3l_header_left ul li{
+	display:inline-block;
+	margin-right:2em;
+	font-size:14px;
+	color: #FFF;
+}
+.w3l_header_left ul li i {
+    padding-right:0.2em;
+    color: #FFF;
+}
+.w3l_header_left ul li a{
+	color:#FFF;
+	text-decoration:none;
+}
+.w3l_header_left ul li a:hover{
+	color:#00a98f;
+}
+.w3l_header_right{
+	float: right;
+}
+.w3ls-social-icons.text-left a {
+    display: inline-block;
+}
+.w3ls-social-icons i {
+    font-size: 15px;
+    background: #333;
+    padding: 8px 10px;
+    color: #fff;
+    border: 1px solid #333;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+}
+.w3ls-social-icons i:hover {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+}
+@media(max-width:575px){
+    nav .container{
+        width: 100%;
+    }
+}
+@media(max-width:480px){
+    .w3l_header_left {
+        float: none;
+        margin: .3em 0 0;
+        text-align: center;
+        margin-bottom:1em;
+    }
+    .w3l_header_right {
+        float: none;
+        margin-left: 9em;
+    }
+}
+@media(max-width:414px){
+    .w3l_header_right {
+        float: none;
+        margin-left: 7em;
+    }
+}
+@media(max-width:375px){
+    .w3l_header_right {
+        float: none;
+        margin-left: 6em;
+    }
+}
+@media(max-width:384px){
+    .w3l_header_left ul li {
+        margin-right: 1em;
+    }
+}
+@media(max-width:320px){
+    .w3l_header_left ul li {
+        margin: 0.3em 0 0 0;
+    }
+    .w3l_header_right {
+        float: none;
+        margin-left: 3.7em;
+    }
+}

@@ -1,0 +1,14 @@
+#dashboard-head{
+    background-color: #52688c;
+    color: white;
+}
+#dashboard-head-cont{
+    padding-top: 20px;
+    padding-bottom: 20px; 
+}
+#dashboard-head .nav-link{
+    color: white;
+}
+#dashboard-head .active{
+    color: black;
+}

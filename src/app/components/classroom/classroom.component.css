@@ -1,0 +1,123 @@
+#curriculum-head{
+    padding: 15px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.section-head{
+    padding: 10px;
+    background-color: #52688c;
+    color: white;
+}
+#question-cont{
+    padding:30px;
+    padding-left: 0;
+}
+#navlinks li{
+    padding: 5px;
+}
+#question-head{
+    padding: 15px;
+    padding-left: 0;
+    padding-right: 0;
+}
+#askquestion-head{
+    padding: 15px;
+    padding-left: 0;
+    padding-right: 0;
+}
+#post-question-alert{
+    display: none;
+}
+#error-alert{
+    display: none;
+}
+.video-menu{
+    overflow-y: scroll;
+    background-color: white;
+    border: 1px solid #d6d9db;
+}
+#rateCourse-head{
+    padding: 15px;
+    padding-left: 0;
+    padding-right: 0;
+}
+#post-rating-alert{
+    display: none;
+}
+#rating-error-alert{
+    display: none;
+}
+#curriculum-list ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+#curriculum-list{
+    overflow-y: scroll;
+}
+#curriculum-list a{
+    text-decoration: none;
+    color: #7c7c7c;
+    transition: 0.5s all;
+}
+#curriculum-list li a:hover{
+    color: black;
+}
+.disable{
+    cursor: not-allowed;
+}
+.activated{
+    color: black;
+    font-weight: bold;
+}
+.video-menu::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.video-menu::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.video-menu::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+.video-menu-head{
+    background-color: white;
+}
+.nav-tabs li{
+    cursor: pointer;
+}
+.sec-head:active{
+    border: 1px solid grey;
+}
+#curriculum-list-cont a{
+    color: black;
+}
+@media(max-width:1920px){
+    .video-player, .video-menu{
+        height: 620px;
+    }
+}
+@media(max-width:1366px){
+    .video-player, .video-menu{
+        height: 490px;
+    }
+}
+@media(max-width:1280px){
+    .video-player, .video-menu{
+        height: 457px;
+    }
+}
+@media(max-width:1080px){
+    .video-player, .video-menu{
+        height: 382px;
+    }
+}

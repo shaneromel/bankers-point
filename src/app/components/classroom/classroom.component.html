@@ -1,0 +1,181 @@
+<div style="background-color:#edf0f4;">
+        <div class="container-fluid">
+            <div class="row">
+                <div style="padding-top:20px;" class="col-sm-8">
+                    <h3>{{course?.name | uppercase}}</h3>
+                </div>
+                <div style="padding-top:20px;" class="col-md-4">
+                        <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                  <span (click)="changeQuestionState()" [ngClass]="questionState || askQuestionState ? 'nav-link active' : 'nav-link' " >Ask question</span>
+                                </li>
+                                <li class="nav-item">
+                                  <span (click)="changeCurriculumState()" [ngClass]="curriculumState ? 'nav-link active' : 'nav-link' ">Curriculum</span>
+                                </li>
+                                <li class="nav-item">
+                                  <span (click)="changeRateCourseState()" [ngClass]="rateCourseState ? 'nav-link active' : 'nav-link' ">Rate course</span>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+            <div id="classroom" class="row">
+              <div style=" margin-bottom:20px;" class="col-sm-8 video-player">
+                  <router-outlet></router-outlet>
+              </div>
+              <div id="curriculum-list" *ngIf="curriculumState" class="col-sm-4 video-menu">
+                  <div id="curriculum-head" class="container-fluid video-menu-head">
+                    <h3 style="text-align:center;" >Curriculum</h3>
+                  </div>
+                  
+        
+                  <div role="tablist" aria-multiselectable="true" id="curriculum-list-cont" style="background-color:white; padding:0px; padding-bottom:0; border-radius:2px; " class="container-fluid">
+                        <ng-container *ngFor="let i of sections; index as n" >
+                            <a data-toggle="collapse" data-parent="#curriculum-list-cont" href="#sec{{i.id}}" aria-expanded="false" ><h5 class="sec-head" style="background-color:#edf0f4; padding:10px; border-radius:5px; color:black;" >{{i.title}}</h5></a>
+                                <br>
+                                <div class="container">
+                                    <ng-container>
+                                        <ul id="sec{{i.id}}" [ngClass]="n==0 ? 'collapse show' : 'collapse'" role="tabpanel" >
+                                          <ng-container *ngFor="let j of lec[i.id]; index as l" >
+                                                <ng-container *ngIf="l==0&&n==0; else further;" >
+                                                    <li ><a [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " ><i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}</a></li>
+                                                </ng-container>
+                                                <ng-template #further >
+                                                    <ng-container *ngIf="isSubscribed; else disabled;" >
+                                                        <li >
+                                                                <a   [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " >
+                                                                    <i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}
+                                                                </a>
+                                                        </li>
+                                                    </ng-container>
+                                                    <ng-template #disabled>
+                                                        <li>
+                                                                <a  class="disable" [routerLink]="[]" >
+                                                                    <i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}
+                                                                </a>
+                                                        </li>
+                                                    </ng-template>
+                                                </ng-template>
+                                                <hr>
+                                          </ng-container>
+                                        </ul>
+                                    </ng-container>
+                                </div>
+                        </ng-container>
+                  </div>
+        
+              </div>
+              <div id="discussion-list" *ngIf="questionState" class="col-sm-4 video-menu">
+                <div id="question-head" class="container-fluid video-menu-head">
+                    <h3 style="text-align:center;" >Questions</h3>
+                </div>
+                <div style="padding:5px;" class="container-fluid">
+                    <h6 style="padding:10px; text-align:center" class="text-muted" >{{discussions?.length}} Questions in the section</h6>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col">
+                            <button class="btn btn-success" (click)="changeAskquestionState()" >Ask a new question</button>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div style="padding:10px;" class="container-fluid">
+                        <div style="padding:5px;" *ngFor="let i of discussions" class="list-group">
+                            <div class="list-group-item flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{studs[i.uid]?.name}}</h5>
+                                <small>{{i.id*1000 | date}}</small>
+                                </div>
+                                <p class="mb-1">{{i.message}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div *ngIf="askQuestionState" class="col-sm-4 video-menu">
+                <div id="askquestion-head" class="container-fluid video-menu-head">
+                    <h3 style="text-align:center;" >Ask Question</h3>
+                </div>
+                <div class="container-fluid" style="padding:5px;" >
+                    <form (ngSubmit)="postQuestion()" >
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Describe your query" [(ngModel)]="discussion.message" name="question" rows="5" ></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Post Question</button> 
+                    </form>
+                    <ngx-loading [show]="loading" ></ngx-loading>
+                </div>
+                <div id="post-question-alert" class="alert alert-success" role="alert">
+                    <button type="button" class="close" (click)="removeAlert()" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Your question was successfully posted!
+                </div>
+                <div id="error-alert" class="alert alert-warning" role="alert">
+                    <button type="button" class="close" (click)="removeErrorAlert()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    Please type in your question
+                </div>
+              </div>
+              <div *ngIf="rateCourseState" class="col-sm-4 video-menu">
+                  <div class="container-fluid" id="rateCourse-head">
+                      <h3 style="text-align:center;" >Rate this course</h3>
+                  </div>
+                  <div class="container-fluid" style="padding:5px;" >
+                        <form (ngSubmit)="postRating()" >
+                            <div class="form-group">
+                                <label for="rating-list">Select a rating</label>
+                                <select [(ngModel)]="rating.rating" name="select-rating" class="form-control" id="rating-list">
+                                    <option [ngValue]="1">1</option>
+                                    <option [ngValue]="2">2</option>
+                                    <option [ngValue]="3">3</option>
+                                    <option [ngValue]="4">4</option>
+                                    <option [ngValue]="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="How do you like this course?" [(ngModel)]="rating.message" name="rating" rows="5" ></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Post rating</button>
+                            
+                        </form>
+                  </div>
+                  <div id="post-rating-alert" class="alert alert-success" role="alert">
+                        <button type="button" class="close" (click)="removeAlert()" >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Your rating was successfully posted!
+                  </div>
+                    <div id="rating-error-alert" class="alert alert-warning" role="alert">
+                        <button type="button" class="close" (click)="removeErrorAlert()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        Empty field(s) detected.
+                    </div>
+              </div>
+            </div>
+        </div>
+        
+        <!-- <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col">
+                            <ul id="navlinks" style="padding-top:5px;" class="nav justify-content-end">
+                                <li class="nav-item">
+                                  <button class="btn btn-outline-success" (click)="changeQuestionState()" >Ask a question</button>
+                                </li>
+                                <li class="nav-item">
+                                  <button class="btn btn-outline-success" (click)="changeCurriculumState()" >Curriculum</button>
+                                </li>
+                                <li class="nav-item" >
+                                    <button class="btn btn-outline-success" (click)="changeRateCourseState()" >Rate this course</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+</div>

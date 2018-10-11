@@ -1,0 +1,12 @@
+#reset-alert{
+    display: none;
+}
+#reset-error-alert{
+    display: none;
+}
+#passHelp:hover{
+    text-decoration: underline;
+}
+#passHelp{
+    cursor: pointer;
+}

@@ -1,0 +1,36 @@
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop:true}" ></ngx-loading>
+
+<div id="category-title" class="container-fluid">
+  <div id="category-title-cont" class="container">
+    <h1>{{categoryName}}</h1>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div id="categoryCourses-cont" class="container">
+    <div class="row">
+      <div class="col-md-9 offset-md-3">
+          <div class="container">
+            <h3>Explore Courses</h3>            
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+          <div class="list-group">
+              <a [routerLink]="['/explore-courses/SSC']" routerLinkActive="active" class="list-group-item list-group-item-action">SSC</a>
+              <a [routerLink]="['/explore-courses/Banking']" routerLinkActive="active" class="list-group-item list-group-item-action">Banking</a>
+          </div>
+      </div>
+      <div id="categoryCourses-list" class="col-md-9">
+        <div class="container">
+          <div class="row">
+            <div *ngFor="let course of courses" class="col-md-4 col-sm-6 col-lg-4 courses">
+              <app-course [course]="course"></app-course>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

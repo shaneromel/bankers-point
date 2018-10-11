@@ -1,0 +1,22 @@
+<div id="dashboard-head" class="container-fluid">
+  <div id="dashboard-head-cont" class="container">
+    <h1 style="font-weight:normal;">Dashboard</h1>
+    <a style="float:right;" [routerLink]="['/course-listings']" class="btn btn-warning">Explore all courses</a>
+  </div>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a [routerLink]="['my-courses']" routerLinkActive #mycourses="routerLinkActive" [ngClass]="mycourses.isActive ? 'nav-link active' : 'nav-link'" >My courses</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['offered-courses']" routerLinkActive #offeredcourses="routerLinkActive" [ngClass]="offeredcourses.isActive ? 'nav-link active' : 'nav-link'" >Offered courses</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['profile']" routerLinkActive #profile="routerLinkActive" [ngClass]="profile.isActive ? 'nav-link active' : 'nav-link'" >Profile</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div style="padding-top: 30px; min-height:400px;" class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,159 @@
+
+
+<!-- <div id="profile-head" class="container-fluid">
+  <div id="profile-cont" class="container">
+    <div class="row">
+      <div class="col-md-3">
+          <img src="{{student?.image}}" class="img-fluid rounded-circle profile-image">
+      </div>
+      <div class="col-md-6">
+        <div style="padding-top:20px;">
+            <h3>{{student?.name}}</h3>
+            <p>student</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div style="padding-top:20px;">
+            <button class="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#change-password" >Change password</button>
+            <button class="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#edit-profile" >Edit profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div id="profile-head" class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <img src="{{student?.image}}" class="img-fluid rounded-circle profile-image">
+    </div>
+    <div class="col-md-3">
+      <h3>{{student?.name}}</h3>
+      <p>student</p>
+    </div>
+    <div class="col-md-4 offset-md-3">
+      <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#change-password" >Change password</button>
+      <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#edit-profile" >Edit profile</button>
+    </div>
+  </div>
+</div>
+
+<!--Modals-->
+<div class="modal fade" id="change-password" tabindex="-1" role="dialog" aria-labelledby="change-passwordLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <div class="form-group">
+                  <label for="old-password">Old Password</label>
+                  <input type="password" class="form-control" id="old-password" [(ngModel)]="oldPass" placeholder="Old Password" name="old-password" >
+              </div>
+              <div class="form-group">
+                  <label for="new-password">New Password</label>
+                  <input type="password" class="form-control" id="new-password" [(ngModel)]="newPass" placeholder="New Password" name="new-password" >
+              </div>
+              <div class="form-group">
+                  <label for="pass-confirm">Confirm new password</label>
+                  <input type="password" class="form-control" id="pass-confirm" [(ngModel)]="passConfirm" placeholder="Confirm Password" name="pass-confirm" >
+              </div>
+          </form>
+          <div class="alert alert-success" style="display:none;" id="edit-password" role="alert">
+            Password successfully updated.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="changePassword()">Submit</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="edit-profileLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="container">
+              <form>
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" [(ngModel)]="student.name" placeholder="Name" name="name" >
+                  </div>
+                  <div class="form-group">
+                      <label for="phone">Phone number</label>
+                      <input type="text" class="form-control" id="phone" [(ngModel)]="student.phone" placeholder="Phone number" name="phone" >
+                  </div>
+                  <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <input type="textarea" class="form-control" id="bio" [(ngModel)]="student.bio" placeholder="bio" name="bio">
+                  </div>
+                  <div class="form-group">
+                    <label for="dp-upload">Upload a profile picture</label>
+                    <div class="progress">
+                      <div id="dp-upload-progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <p style="display:none;"></p>
+                    <input type="file" id="choose-pic" class="form-control-file">
+                  </div>
+              </form>
+              <div class="alert alert-success" style="display:none;" id="edit-message" role="alert">
+                Profile successfully updated
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="update-btn" (click)="editProfile()" >Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/Modals-->
+
+  <div id="profile-info" class="container-fluid">
+    <div id="profile-info-cont" class="container">
+      <h2>Overview</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div style="padding-left:0;" class="container">
+            <div class="card">
+              <div class="card-header">
+                About
+              </div>
+              <div class="card-block">
+                <p class="card-text"><strong>Email</strong><span style="float:right;">{{student?.email}}</span></p>
+                <p class="card-text"><strong>Phone number</strong><span style="float:right;" >{{student?.phone}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="container">
+            <div class="card">
+              <div class="card-header">
+                Bio
+              </div>
+              <div class="card-block">
+                <p class="card-text">{{student?.bio}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-loading [show]="loading" ></ngx-loading>

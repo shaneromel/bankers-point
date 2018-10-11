@@ -1,0 +1,12 @@
+.quick-link{
+    background-color: #edf0f4;
+    padding: 25px;
+}
+.quick-link-cont{
+    border: 1px solid #d6d9db;
+    background-color: white;
+    padding: 20px;
+}
+.quick-link-cont h1{
+    text-align: center;
+}

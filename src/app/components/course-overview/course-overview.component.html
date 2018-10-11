@@ -1,0 +1,18 @@
+<div style="min-height:500px;" class="row">
+  <ngx-loading [show]="loading"></ngx-loading>
+  <div style="padding:25px" class="col-md-8">
+    <div id="overview" class="container">
+  
+    </div>
+  </div>
+  <div id="about-instructor" class="col-md-4">
+    <div class="container">
+        <h4 style="text-align:center; padding:30px;">INSTRUCTOR</h4>
+        <div style="text-align:center;">
+          <img style=" width: 200px; height: 200px; border-radius: 100px;" src="{{instructor?.image}}" >
+        </div>
+        <h6 style="text-align:center; padding:30px;"><strong>{{instructor?.name}}</strong></h6>
+        <p style="padding:20px; padding-top:0" class="text-muted">{{instructor?.bio}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+/* .course-title{
+    padding: 15px;
+    padding-left: 0px;
+}
+.head-list li{
+    display: inline-block;
+}
+.head-list{
+    list-style-type: none;
+    padding-left: 0;
+}
+#head-cont{
+    padding: 5px;
+}
+#course-preview-cont{
+    padding: 15px;
+}
+#wishlist-btn:hover #heart{
+    color: grey;
+}
+#heart{
+    transition: all .5s;
+    cursor: pointer;
+}
+#course-info ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+#about-course{
+    background-color: #e8e8e8;
+}
+.about-course-head{
+    padding: 30px;
+    padding-left: 0;
+}
+#about-course-cont{
+    padding: 50px;
+    padding-left: 0;
+    padding-top: 0;
+}
+#review-cont{
+    background: white;
+    border: 1px solid silver;
+    border-radius: 3px;
+}
+#star-display{
+    padding: 30px;
+    text-align: center;
+}
+#rating-display ul{
+    display: inline;
+    list-style-type: none;
+    padding-left: 0;
+    padding: 30px;
+} */
+.fa-heart{
+    cursor: pointer;
+}
+#course-desc-cont{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.centered
+{
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.centerer
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.tab{
+    border-bottom: 1px solid #d6d9db;
+}
+#details{
+    background-color:#edf0f4;
+    padding-bottom: 20px; 
+    padding-top: 20px;
+}
+#details-cont{
+    border: 1px solid #d6d9db;
+    background-color: white;
+}
+#cancel-coupon{
+    cursor: pointer;
+}
+#cancel-coupon:hover{
+    text-decoration: underline;
+}

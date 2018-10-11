@@ -1,0 +1,43 @@
+
+<!-- <vg-player (onPlayerReady)="onPlayerReady($event)" >
+
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+
+    <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+
+    <vg-controls>
+        <vg-play-pause></vg-play-pause>
+        <vg-playback-button></vg-playback-button>
+
+        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+        
+        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+        <button (click)="changeSource()" style="background-color:transparent;color:white;" class="btn">{{selectedVideoQuality}}
+        </button>
+        
+        <vg-mute></vg-mute>
+        <vg-volume></vg-volume>
+
+        <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+  
+    <video id="lecture-video" width="100%" [vgMedia]="media" [src]="video" #media id="singleVideo" preload="auto" crossorigin>
+       
+    </video>
+</vg-player> -->
+<!-- <div id="vide">
+        <div id="player">
+            <a class="fp-prev"></a>
+   <a class="fp-next"></a>
+        </div>
+    </div> -->
+<ngx-loading [show]="loading" ></ngx-loading>
+<div id="embedBox"  style="width:100%; height:100%;" ></div>

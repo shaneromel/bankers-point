@@ -1,0 +1,84 @@
+<div class="agileits_top_menu">
+
+    <div class="w3l_header_left">
+         <ul>
+           
+           <li><i aria-hidden="true" class="fa fa-phone"></i> +91 8955974739</li>
+           <li><i aria-hidden="true" class="far fa-envelope"></i> <a href="mailto:bankerspoint2016@gmail.com">bankerspoint2016@gmail.com</a></li>
+         </ul>
+       </div>
+       <div class="w3l_header_right">
+         <div class="w3ls-social-icons text-left">
+           <a style="margin-right:5px;" class="facebook" href=" https://www.facebook.com/bankerspointcoaching" target="_blank"><i class="fab fa-facebook-f"></i></a>
+           <a class="youtube" href=" https://www.youtube.com/bankerspoint " target="_blank"><i aria-hidden="true" class="fab fa-youtube"></i></a>
+         </div>
+       </div>
+       <div class="clearfix"> </div>
+     </div>
+<nav id="navbar" class="navbar sticky-top navbar-toggleable-md navbar-inverse bg-inverse">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="['/']" >
+        <img src="https://firebasestorage.googleapis.com/v0/b/bankers-point-a82f2.appspot.com/o/playstore-icon.png?alt=media&token=c6bf8cee-b404-4457-b236-7c75697303f3" class="img-fluid" width="50px" height="50px" >
+        <strong>
+          <span style="color: rgb(79, 129, 189);" > Bankers </span>
+          <span style="color: rgb(192, 80, 77);">Point</span>
+        </strong>
+      </a>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        
+        <ul class="navbar-nav ml-auto">
+          <ng-container *ngIf="url=='/cover'" >
+              <li class="nav-item home-nav">
+                  <a class="nav-link hvr-underline-from-center active" pageScroll href="#courses" >Courses<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item home-nav">
+                  <a class="nav-link hvr-underline-from-center active" pageScroll href="#prep-fluid" >Preparation<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item home-nav">
+                  <a class="nav-link hvr-underline-from-center active" pageScroll href="#features" >Features<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item home-nav">
+                <a class="nav-link hvr-underline-from-center active" pageScroll href="#about-us" >About Us<span class="sr-only">(current)</span></a>
+              </li>
+          </ng-container>
+          <li class="nav-item home-nav">
+            <a class="nav-link hvr-underline-from-center active" [routerLink]="['/mobile-app']" >Mobile App<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="['/explore-courses/SSC']" >SSC</a>
+              <a class="dropdown-item" [routerLink]="['/explore-courses/Banking']">Banking</a>
+            </div>
+          </li>
+
+          <ng-container *ngIf="user; else loggedOut">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{user?.displayName}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" [routerLink]="['/dashboard/'+user?.uid+'/my-courses']" >Dashboard</a>
+                <a class="dropdown-item">Logout</a>
+              </div>
+            </li>
+          </ng-container>
+
+          <ng-template #loggedOut>
+            <li class="nav-item home-nav">
+              <a class="nav-link hvr-underline-from-center active" [routerLink]="['/signin']" >Sign In</a>
+            </li>
+            <li class="nav-item home-nav">
+              <a class="nav-link hvr-underline-from-center active" [routerLink]="['/signup']" >Sign Up</a>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </nav>

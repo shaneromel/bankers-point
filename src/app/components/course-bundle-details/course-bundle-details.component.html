@@ -1,0 +1,77 @@
+<div class="container-fluid">
+	<div id="course-desc-cont" class="container">
+		<div class="row">
+			<div class="col-lg-5">
+				<img src="{{courseBundle?.image}}" class="img-fluid">
+			</div>
+			<div class="col-lg-7">
+				<ng-container *ngIf="!isSubscribed" >
+						<h5>Validities Available: </h5>
+						<hr>
+						<!-- <div class="form-group" *ngFor="let val of courseBundle?.validities">
+							<input (ngModelChange)="price=val.price" style="margin-right:5px;" type="radio" value="{{val.validity}}" [(ngModel)]="validityChoice">
+							<label> {{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}</label>
+						</div> -->
+						<!-- <div class="list-group">
+              <button *ngFor="let val of courseBundle?.validities; index as i" (click)="validitySelected(i)" type="button" [ngClass]="index==i ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action'" >{{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}</button>
+						</div> -->
+						<ul class="list-group">
+								<li *ngFor="let val of courseBundle?.validities; index as i" class="list-group-item justify-content-between">{{val.validity}} days | &#8377;{{val.price | number:'0.2-2'}}
+									<button (click)="pay(i)" class="btn btn-success">Buy Now</button>
+								</li>
+						</ul>
+						<hr>
+				</ng-container>
+				<!-- <div *ngIf="!isSubscribed;" class="row">
+					<div class="col-lg-5"><h3 style="float:left" class="text-success">₹ {{courseBundle?.price_offer}}</h3><h3 class="text-success" style="text-decoration:line-through; float:right;" >₹ {{courseBundle?.price_actual}}</h3></div>
+        </div> -->
+				<div class="row">
+					<!-- <div *ngIf="!isSubscribed && validityChoice" style="padding:10px;" class="col-lg-3">
+            <button (click)="pay()" style="cursor:pointer;" class="btn btn-success btn-block">Buy now</button>
+          </div> -->
+					<div *ngIf="!isSubscribed" style="padding:10px;" class="col-lg-6">
+						<div class="input-group">
+							<input type="text" class="form-control" [(ngModel)]="couponCode" name="coupon-code" placeholder="Coupon code">
+							<span class="input-group-btn">
+							  <button [ngClass]="couponApplied ? 'btn btn-secondary disabled' : 'btn btn-secondary'" (click)="applyCode()" type="button">Apply</button>
+							</span>
+            </div>
+            <div *ngIf="couponApplied" style="margin-top:10px;" id="coupon-success" class="alert alert-success" role="alert">
+              Your coupon code was successfully applied. You can cancel your coupon from <strong (click)="cancelCoupon()" id="cancel-coupon" >here</strong>.
+						</div>
+						<div style="margin-top:10px; display:none;" id="coupon-error" class="alert alert-danger" role="alert">
+               Invalid coupon.
+            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="margin-top:10px" class="row">
+			<div class="col-12">
+					<h3>{{courseBundle?.name}}</h3>
+					<p class="text-muted">{{courseBundle?.description}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid tab">
+	<div class="container">
+		<ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a [routerLink]="['overview']" routerLinkActive #rloverview="routerLinkActive" [ngClass]="rloverview.isActive? 'nav-link active' : 'nav-link' " >Overview</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['courses']" routerLinkActive #rlcourses="routerLinkActive" [ngClass]="rlcourses.isActive? 'nav-link active' : 'nav-link' ">Courses</a>
+      </li>
+    </ul>
+	</div>
+</div>
+
+<div id="details" class="container-fluid">
+  <div id="details-cont" class="container">
+    <router-outlet >
+        
+    </router-outlet>
+  </div>
+</div>

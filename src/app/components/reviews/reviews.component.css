@@ -1,0 +1,19 @@
+#rating-disp{
+    border: 1px solid #edf0f4;
+    border-radius: 5px;
+}
+#review-cont{
+    background: white;
+    border: 1px solid #edf0f4;
+    border-radius: 3px;
+}
+#star-display{
+    padding: 30px;
+    text-align: center;
+}
+#rating-display ul{
+    display: inline;
+    list-style-type: none;
+    padding-left: 0;
+    padding: 30px;
+}

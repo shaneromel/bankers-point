@@ -1,0 +1,19 @@
+.heading{
+    padding: 15px;
+    padding-left: 0px;
+}
+#head{
+    background-color: #52688c;
+    color: white;
+}
+#course-search{
+    padding: 15px;
+}
+#course-list-cont{
+    padding: 50px;
+    padding-left: 0;
+}
+#options{
+    padding: 20px;
+    padding-top: 0;
+}

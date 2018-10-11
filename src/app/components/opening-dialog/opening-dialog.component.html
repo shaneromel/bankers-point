@@ -1,0 +1,26 @@
+<div>
+  <div class="row">
+    <div class="col-2 offset-10">
+      <button (click)="closeDialog()" mat-icon-button >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <mat-dialog-content>
+      <div class="row">
+        <div class="col-4">
+          <img width="100%" height="100%" src="https://firebasestorage.googleapis.com/v0/b/bankers-point-a82f2.appspot.com/o/android-chrome-256x256.png?alt=media&token=0a7da9e4-2334-46ce-93eb-6ad04c267882" class="img-fluid">
+        </div>
+        <div class="col-8">
+          <div class="container">
+            <p class="text-primary" ><strong>Download the Bankers Point app.</strong></p>
+          </div>
+          <div class="container-fluid" >
+            <img id="play-badge" (click)="openPlayStore()" width="70%" height="auto" src="https://firebasestorage.googleapis.com/v0/b/bankers-point-a82f2.appspot.com/o/google-play-badge.png?alt=media&token=80fea845-7871-4a4e-b302-d40dc8aee760" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </div>
+</div>

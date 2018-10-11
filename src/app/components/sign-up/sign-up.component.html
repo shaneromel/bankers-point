@@ -1,0 +1,48 @@
+<div class="container-fluid auth-background">
+    <div class="container ">
+        <div class="row authContainer">
+            <div class="col-md-6">
+                <div class="container formContainer authBlock" style="height:auto" >
+                  <h1 class="authTitle" >Register</h1>
+                  <form (ngSubmit)="signUp()" >
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="student.name" name="name" >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="signupEmail">Email address</label>
+                      <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="student.email" name="signupEmail" >
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone number</label>
+                        <input type="number" class="form-control" id="phoneNumber" placeholder="Phone number" [(ngModel)]="student.phone" name="signupEmail" >
+                        <small *ngIf="student.phone.length!=10&&student.phone.length>0" id="phoneHelp" class="form-text text-warning">Enter a 10 digit phone number</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="signupPass" >Password</label>
+                      <input type="password" class="form-control" id="signupPass" placeholder="Enter password" [(ngModel)]="pass" name="signupPassword" >
+                      <small *ngIf="pass?.length<6&&pass?.length>0" class="form-text text-warning">Password should be atleast 6 characters</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="signinPass" >Confirm Password</label>
+                        <input type="password" class="form-control" aria-describedby="passConfirmHelp" id="signupPassConfirm" placeholder="Enter password again" [(ngModel)]="passConfirm" name="signupPasswordConfirm" >
+                        <small *ngIf="pass!=passConfirm;" class="form-text text-warning"><i class="fa fa-times" aria-hidden="true"></i> Password donot match</small>
+                        <small *ngIf="pass==passConfirm&&pass?.length>0&&passConfirm?.length>0;" class="form-text text-success"><i class="fa fa-check" aria-hidden="true"></i> Password match</small>
+                      </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                  <div style="display:none;" id="signup-error-alert" class="alert alert-danger" role="alert">
+                      
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="container formContainer authBlock">
+                  <h1 class="authTitle" >Already have an account?</h1>
+                  <button type="button" [routerLink]="['/signin']" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                </div>
+              </div>
+        </div>
+      </div>
+</div>

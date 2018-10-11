@@ -1,0 +1,8 @@
+#curriculum ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+#curriculum li{
+    padding: 5px;
+    padding-left: 0;
+}

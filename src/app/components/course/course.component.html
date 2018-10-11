@@ -1,0 +1,16 @@
+<a [routerLink]="['/course-details',course?.id]" >              
+  <div class='card course-card'>                
+    <img class='card-img-top' [src]="course?.image" width='100%' height='150px' alt='Card image cap'>                
+    <div class='card-block'>                  
+      <h4 class='card-title'>{{course?.name}}</h4>                                       
+    </div> 
+    <div class='card-footer' style='padding-right:0;' >  
+      <span style=' float:right; background-color:#11a15d; color:white; padding-left:15px;padding-right:10px; ' class=' item'><span style='font-size:20px;' >₹</span>
+      <strong style='font-size:18px;' >{{course?.price_offer}}</strong> </span> 
+      <span class='text-success' style='text-decoration:line-through; padding-right:10px; float:right;' >
+        <span style='font-size:20px;' >₹</span>
+        <span style='font-size:18px;' >{{course?.price_actual}}</span>
+      </span> 
+    </div>            
+  </div>            
+</a>
