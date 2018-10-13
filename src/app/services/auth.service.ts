@@ -24,8 +24,8 @@ export class AuthService {
   }
 
   login(email,password){
-      this.afAuth.auth.signInWithEmailAndPassword(email,password).then(()=>{
-        this.router.navigate(['/course-listings']);
+      this.afAuth.auth.signInWithEmailAndPassword(email,password).then((user)=>{
+        this.router.navigate(['/dashboard/'+user.user.uid+"/my-courses"]);
       }).catch(err=>{
         $("#signin-error-alert").text(err).show();
       })

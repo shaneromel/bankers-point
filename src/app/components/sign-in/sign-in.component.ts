@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.authService.afAuth.auth.onAuthStateChanged(user=>{
       if(user){
-        this.router.navigate(['course-listings']);
+        this.router.navigate(['/dashboard/'+user.uid+"/my-courses"]);
       }
     });
   }

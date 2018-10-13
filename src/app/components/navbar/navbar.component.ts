@@ -93,6 +93,7 @@ export class NavbarComponent implements OnInit {
     var uid=this.authService.afAuth.auth.currentUser.uid;
     this.authService.logout().then(()=>{
       this.toaster.success("Successfully logged out.","Success");
+      this.router.navigate(['/signin']);
       firebase.firestore().collection("user_tokens").doc(uid).delete();
     }).catch(err=>{
       this.toaster.error(err.message,"Error")

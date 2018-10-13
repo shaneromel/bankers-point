@@ -231,7 +231,7 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   pay(index){
-    this.price=this.couponApplied ? this.course.validities[index].price-this.course.validities[index].price*this.discount/100 : this.course.validities[index].price;
+    this.price=this.course.validities[index].price;
     this.validityChoice=this.course.validities[index].validity;
     this.index=index;
     this.authService.afAuth.auth.onAuthStateChanged(user=>{
@@ -241,7 +241,7 @@ export class CourseDetailsComponent implements OnInit {
         if(purpose.length>29){
           purpose=purpose.substring(0,29);
         }
-        window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price+"&email="+user.email+"&course_id="+this.course.id+"&type=course&validity="+validity.validity);
+        window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price.toFixed(2)+"&email="+user.email+"&course_id="+this.course.id+"&type=course&validity="+validity.validity);
       }else{
         this.router.navigate(['/signin']);
       }
