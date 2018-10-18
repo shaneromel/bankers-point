@@ -241,7 +241,7 @@ export class CourseDetailsComponent implements OnInit {
         if(purpose.length>29){
           purpose=purpose.substring(0,29);
         }
-        window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price.toFixed(2)+"&email="+user.email+"&course_id="+this.course.id+"&type=course&validity="+validity.validity);
+        window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price.toFixed(2)+"&email="+user.email+"&course_id="+this.course.id+"&type=course&validity="+validity.validity+"&uid="+user.uid);
       }else{
         this.router.navigate(['/signin']);
       }
