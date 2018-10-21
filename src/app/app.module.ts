@@ -62,6 +62,7 @@ import { CourseComponent } from './components/course/course.component';
 import { CourseBundleComponent } from './components/course-bundle/course-bundle.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { ToastrModule } from 'ngx-toastr';
+import { UpdatesComponent } from './components/updates/updates.component';
 
 const router:Routes=[
   {
@@ -131,6 +132,9 @@ const router:Routes=[
       {
         path:'profile', component:ProfileComponent
       },
+      {
+        path:"updates", component:UpdatesComponent
+      }
     ]
   },
   {
@@ -181,7 +185,8 @@ const router:Routes=[
     ErrorPaymentComponent,
     CourseComponent,
     CourseBundleComponent,
-    WishlistComponent
+    WishlistComponent,
+    UpdatesComponent
   ],
   entryComponents:[
     OpeningDialogComponent

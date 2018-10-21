@@ -92,7 +92,7 @@ export class CourseBundleDetailsComponent implements OnInit {
 
   pay(index:number){
     this.index=index;
-    this.price=this.couponApplied ? this.courseBundle.validities[index].price-this.courseBundle.validities[index].price*this.discount/100 : this.courseBundle.validities[index].price;
+    this.price=this.courseBundle.validities[index].price;
     this.validityChoice=this.courseBundle.validities[index].validity;
     this.authService.afAuth.auth.onAuthStateChanged(user=>{
       if(user){

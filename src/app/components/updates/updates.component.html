@@ -1,0 +1,14 @@
+<div class="list-group">
+  <ng-container *ngIf="updates?.length>0; else empty" >
+    <div *ngFor="let update of updates" class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{update.title}}</h5>
+        <small>{{update.id | date}}</small>
+      </div>
+      <p class="mb-1">{{update.text}}</p>
+    </div>
+  </ng-container>
+  <ng-template #empty>
+    <h3>No updates currently posted</h3>
+  </ng-template>
+</div>

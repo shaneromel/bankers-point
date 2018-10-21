@@ -38,7 +38,6 @@ export class AuthService {
   async register(student:Student,password:string){
     try{
       const result=await this.afAuth.auth.createUserWithEmailAndPassword(student.email,password);
-      console.log(result);
       this.router.navigate(['/course-listings']);
     }
     catch(e){
