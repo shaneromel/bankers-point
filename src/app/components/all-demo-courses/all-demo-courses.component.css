@@ -1,0 +1,15 @@
+a{
+    color: black;
+    text-decoration: none;
+}
+#category-title-cont{
+    padding: 10px; 
+}
+#category-title{
+    background-color: #52688c;
+    color: white;
+}
+#categoryCourses-cont{
+    padding: 50px;
+    padding-left: 0;
+}

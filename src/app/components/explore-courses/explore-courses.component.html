@@ -25,9 +25,14 @@
       <div id="categoryCourses-list" class="col-md-9">
         <div class="container">
           <div class="row">
-            <div *ngFor="let course of courses" class="col-md-4 col-sm-6 col-lg-4 courses">
-              <app-course [course]="course"></app-course>
-            </div>
+            <ng-container *ngIf="courses?.length>0; else empty">
+              <div *ngFor="let course of courses" class="col-md-4 col-sm-6 col-lg-4 courses">
+                <app-course [course]="course"></app-course>
+              </div>
+            </ng-container>
+            <ng-template #empty>
+              <p>Sorry, no courses to show</p>
+            </ng-template>
           </div>
         </div>
       </div>

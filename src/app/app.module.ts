@@ -63,6 +63,9 @@ import { CourseBundleComponent } from './components/course-bundle/course-bundle.
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { ToastrModule } from 'ngx-toastr';
 import { UpdatesComponent } from './components/updates/updates.component';
+import { DemoLecturesComponent } from './components/demo-lectures/demo-lectures.component';
+import { DemoLectureItemComponent } from './components/demo-lecture-item/demo-lecture-item.component';
+import { AllDemoCoursesComponent } from './components/all-demo-courses/all-demo-courses.component';
 
 const router:Routes=[
   {
@@ -94,6 +97,9 @@ const router:Routes=[
       },
       {
         path:'reviews', component:ReviewsComponent
+      },
+      {
+        path:"demo-lectures", component:DemoLecturesComponent
       }
     ]
   },
@@ -153,6 +159,9 @@ const router:Routes=[
   },
   {
     path:'error-payment', component:ErrorPaymentComponent
+  },
+  {
+    path:"demo-lectures", component:AllDemoCoursesComponent
   }
 ];
 
@@ -186,7 +195,10 @@ const router:Routes=[
     CourseComponent,
     CourseBundleComponent,
     WishlistComponent,
-    UpdatesComponent
+    UpdatesComponent,
+    DemoLecturesComponent,
+    DemoLectureItemComponent,
+    AllDemoCoursesComponent
   ],
   entryComponents:[
     OpeningDialogComponent

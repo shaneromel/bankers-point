@@ -189,44 +189,44 @@
           <div class="container coverContainer">
               <h1  class="containerHead">About us</h1>
               <div  class="row">
-                  <div (click)="showModal('modal-1')" class="col-md-4 offset-md-2">
+                  <div *ngFor="let a of aboutUs" (click)="showModal(a.id)" class="col">
                       <div  class="team-member">
-                          <div  class="team-img">
-                              <img  alt="team member" class="image img-fluid" src="https://firebasestorage.googleapis.com/v0/b/bankerspoint-ed327.appspot.com/o/anshul_j6h875pnwaucnsdfs9k9%20(1).jpg?alt=media&amp;token=93e165f5-be23-4375-bb3d-3d9bd194c190">
+                          <div class="team-img">
+                              <img style="height:400px" alt="{{a.name}}" class="image img-fluid" [src]="a.image">
                           </div>
                           <div  class="team-hover">
                               <div  class="desk">
-                                  <h4 >Maths and Reasoning</h4>
+                                  <h4 >{{a.specialization}}</h4>
                               </div>
                               <div  class="s-link">
-                                  <a  href=" https://www.facebook.com/anshul.saini.33"><i  class="fab fa-facebook-f"></i></a>                          
+                                  <a href="{{a.facebook}}"><i  class="fab fa-facebook-f"></i></a>                          
                               </div>
                           </div>
                       </div>
                       <div  class="team-title">
-                          <h5 ><strong >Anshul Saini</strong></h5>
-                          <span > <strong >founder &amp; ceo</strong></span>
+                          <h5 ><strong >{{a.name}}</strong></h5>
+                          <span > <strong >{{a.designation}}</strong></span>
                       </div>
-                      <div  class="modal fade" id="modal-1">
+                      <div  class="modal fade" id="{{a.id}}">
                         <div  class="modal-dialog" role="document">
                           <div  class="modal-content">
                             <div  class="modal-header">
-                              <h5  class="modal-title">Anshul Saini</h5>
+                              <h5  class="modal-title">{{a.name}}</h5>
                               <button  aria-label="Close" class="close" type="button">
-                                <span (click)="closeModal('modal-1')" aria-hidden="true">×</span>
+                                <span (click)="closeModal(a.id)" aria-hidden="true">×</span>
                               </button>
                             </div>
                             <div  class="modal-body">
                               <div  class="col-md-6 offset-md-3 modal-image">
-                                  <img  class="img-fluid rounded-circle" src="https://firebasestorage.googleapis.com/v0/b/bankerspoint-ed327.appspot.com/o/anshul_j6h875pnwaucnsdfs9k9%20(1).jpg?alt=media&amp;token=93e165f5-be23-4375-bb3d-3d9bd194c190">
+                                  <img  class="img-fluid rounded-circle" [src]="a.image">
                               </div>
-                              <p >Mr Anshul Saini,a BTech from NIT Srinagar, is a renowned faculty of Maths and Reasoning and likes to teach Maths and reasoning like a game which makes him a favourite mentor for learning the intricate concepts of math and reasoning in an easy way. His millions of views on you tube is a clear indication of his likeability , popularity and ability to teach effectively on the latest pattern of various competitive exams like SBI PO, IBPS PO, SSC CGLHe keeps innovating and works round the clock for students’ success in the very first attempt.</p>
+                              <p >{{a.description}}</p>
                             </div>
                           </div>
                         </div>
                       </div>
                   </div>
-                  <div (click)="showModal('modal-2')" class="col-md-4">
+                  <!-- <div (click)="showModal('modal-2')" class="col-md-4">
                       <div  class="team-member">
                           <div  class="team-img">
                               <img  alt="team member" class="image img-fluid" src="https://firebasestorage.googleapis.com/v0/b/bankerspoint-ed327.appspot.com/o/ankit__saini_h3gvat3j1nygfvl5wmi.jpg?alt=media&amp;token=a2f77f12-d60a-4629-824d-33918596d00b">
@@ -262,7 +262,7 @@
                           </div>
                         </div>
                       </div>
-                  </div>
+                  </div> -->
               </div>
           </div>
       

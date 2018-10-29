@@ -36,8 +36,8 @@
                                     <ng-container>
                                         <ul id="sec{{i.id}}" [ngClass]="n==0 ? 'collapse show' : 'collapse'" role="tabpanel" >
                                           <ng-container *ngFor="let j of lec[i.id]; index as l" >
-                                                <ng-container *ngIf="l==0&&n==0; else further;" >
-                                                    <li ><a [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " ><i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}</a></li>
+                                                <!-- <ng-container *ngIf="l==0&&n==0; else further;" >
+                                                    <li ><a [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " ><i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}</a><a *ngIf="j.pdf" style="float:right;" download="" href="{{j.pdf}}"><i class="fas fa-file-pdf"></i></a></li>
                                                 </ng-container>
                                                 <ng-template #further >
                                                     <ng-container *ngIf="isSubscribed; else disabled;" >
@@ -45,8 +45,20 @@
                                                                 <a   [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " >
                                                                     <i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}
                                                                 </a>
+                                                                <a *ngIf="j.pdf" style="float:right;" download="" href="{{j.pdf}}"><i class="fas fa-file-pdf"></i></a>
                                                         </li>
                                                     </ng-container>
+                                                    <ng-template #disabled>
+                                                        <li>
+                                                                <a  class="disable" [routerLink]="[]" >
+                                                                    <i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}
+                                                                </a>
+                                                        </li>
+                                                    </ng-template>
+                                                </ng-template> -->
+                                                <li *ngIf="isSubscribed; else notSubscribed" ><a [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " ><i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}</a><a *ngIf="j.pdf" style="float:right;" download="" href="{{j.pdf}}"><i class="fas fa-file-pdf"></i></a></li>
+                                                <ng-template #notSubscribed>
+                                                    <li *ngIf="j.is_demo; else disabled" ><a [routerLink]="['lecture',i.id,j.id]" routerLinkActive #rla="routerLinkActive" [ngClass]="rla.isActive ? 'activated' : '' " ><i class="fa fa-play-circle" aria-hidden="true"></i> {{j.title}}</a><a *ngIf="j.pdf" style="float:right;" download="" href="{{j.pdf}}"><i class="fas fa-file-pdf"></i></a></li>
                                                     <ng-template #disabled>
                                                         <li>
                                                                 <a  class="disable" [routerLink]="[]" >

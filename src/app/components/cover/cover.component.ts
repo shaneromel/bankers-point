@@ -54,6 +54,8 @@ export class CoverComponent implements OnInit {
 
   authState:boolean;
 
+  aboutUs:any[];
+
   constructor(private courseService:CourseService, private router:Router, private instructorService:InstructorService, private courseBundleService:CourseBundleService, private dialog:MatDialog, private authService:AuthService) {
     this.banners=new Array();
     authService.afAuth.auth.onAuthStateChanged(user=>{
@@ -66,6 +68,15 @@ export class CoverComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    firebase.firestore().collection("about-us").get().then(querySnapshot=>{
+      this.aboutUs=new Array();
+      querySnapshot.forEach(doc=>{
+        var d=doc.data() as any;
+        d.id=doc.id;
+        this.aboutUs.push(d);
+      })
+    })
 
     // this.instructorSubscription=this.instructorService.getInstructor().subscribe(instructors=>{
     //   this.intructors=instructors;

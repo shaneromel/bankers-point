@@ -45,7 +45,7 @@ export class MyCoursesComponent implements OnInit {
         this.myCourses.push(doc.id);
       });
 
-      this.courseSubscription=this.courseService.getCourse().subscribe(courses=>{
+      this.courseSubscription=this.courseService.getAllCourses().subscribe(courses=>{
         this.courses=new Array();
         
         this.myCourses.forEach(mycourse=>{

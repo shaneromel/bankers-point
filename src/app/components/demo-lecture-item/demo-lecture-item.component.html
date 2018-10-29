@@ -1,0 +1,9 @@
+<ng-container *ngIf="lectures?.length>0" >
+    <h5>{{section?.title}}</h5>
+    <hr>
+    <ol>
+        <li *ngFor="let lecture of lectures">
+            <a class="demo-lecture" [routerLink]="['/classroom/'+courseId+'/lecture/'+section?.id+'/'+lecture.id]">{{lecture.title}}</a>
+        </li>
+    </ol>
+</ng-container>

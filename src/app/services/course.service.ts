@@ -84,6 +84,19 @@ export class CourseService {
     return this.lectures;
   }
 
+  getDemoLectures(courseId, sectionId){
+    var sectionDoc=this.af.doc<Section>('courses/'+courseId+"/section/"+sectionId);
+    this.lectureCollection=sectionDoc.collection("lecture", ref=>ref.where("is_demo","==",true));
+    this.lectures=this.lectureCollection.snapshotChanges().map(changes=>{
+      return changes.map(a=>{
+        const data=a.payload.doc.data() as Lecture;
+        data.id=a.payload.doc.id;
+        return data;
+      })
+    });
+    return this.lectures;
+  }
+
   getDiscussion(courseId:string, sectionId:string){
     var sectionDoc=this.af.doc<Discussion>('courses/'+courseId+'/section/'+sectionId);
     this.discussionCollection=sectionDoc.collection("discussion");
@@ -125,8 +138,19 @@ export class CourseService {
     });
   }
 
+  getAllCourses(){
+    return this.af.collection("courses").snapshotChanges().map(changes=>{
+      return changes.map(a=>{
+        const data=a.payload.doc.data() as Course;
+        data.id=a.payload.doc.id;
+
+        return data;
+      });
+    });
+  }
+
   getCoursesByCategory(category:string){
-    return this.af.collection("courses",ref=>ref.where("category","==",category)).snapshotChanges().map(actions=>{
+    return this.af.collection("courses",ref=>ref.where("category","==",category).where("is_active","==",true)).snapshotChanges().map(actions=>{
       return actions.map(a=>{
         const data=a.payload.doc.data() as Course;
         data.id=a.payload.doc.id;

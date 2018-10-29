@@ -150,6 +150,12 @@ export class ClassroomComponent implements OnInit {
 
   }
 
+  viewPdf(i,j){
+    firebase.firestore().doc("courses/"+this.course.id+"/section/"+i+"/lecture/"+j).get().then(doc=>{
+      window.location.replace(doc.data().pdf);
+    })
+  }
+
   showDiscussions(){
     this.childSub=this.route.firstChild.params.subscribe(params=>{
       this.section_id=params['section-id'];
