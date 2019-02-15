@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import { Component, OnInit , Inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DecimalPipe, NgStyle } from '@angular/common';
 
@@ -76,7 +77,7 @@ export class CourseDetailsComponent implements OnInit {
   index:number;
   discount:number;
   
-  constructor(private route:ActivatedRoute, private courseService:CourseService, private authService:AuthService, private instructorService:InstructorService, private router:Router, private dialog:MatDialog) {
+  constructor(@Inject(WINDOW) private window: Window, private route:ActivatedRoute, private courseService:CourseService, private authService:AuthService, private instructorService:InstructorService, private router:Router, private dialog:MatDialog) {
     this.couponApplied=false;
     this.avgRatings=new Array();
     this.videos=0;
@@ -98,6 +99,8 @@ export class CourseDetailsComponent implements OnInit {
 
     this.subscription_course=this.courseService.getCourseById(this.id).subscribe(course=>{
       this.course=course;
+      this.isFree=course.is_free;
+      console.log(this.course);
       this.authService.afAuth.auth.onAuthStateChanged(user=>{
         if(user){
           firebase.firestore().doc("students/"+user.uid+"/my_courses/"+this.id).get().then(doc=>{
@@ -106,6 +109,7 @@ export class CourseDetailsComponent implements OnInit {
               this.isSubscribed=true;
               var dateDiff=Date.now()-doc.data().date;
               this.days=(((dateDiff/60000))/60)/24;
+              console.log(this.validity+" "+this.days);
               this.progressWidth=Math.floor((this.days/this.validity*100)).toString()+"%";
             }
           });
@@ -241,7 +245,7 @@ export class CourseDetailsComponent implements OnInit {
         if(purpose.length>29){
           purpose=purpose.substring(0,29);
         }
-        window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price.toFixed(2)+"&email="+user.email+"&course_id="+this.course.id+"&type=course&validity="+validity.validity+"&uid="+user.uid);
+        this.window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price.toFixed(2)+"&email="+user.email+"&course_id="+this.course.id+"&type=course&validity="+validity.validity+"&uid="+user.uid+"&name="+user.displayName);
       }else{
         this.router.navigate(['/signin']);
       }

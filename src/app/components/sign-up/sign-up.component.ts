@@ -50,7 +50,10 @@ export class SignUpComponent implements OnInit {
               address:this.student.email,
               subject:doc.data().subject
             }
-            this.http.post("https://bankerspoint.org/mail.php", body);
+            console.log(body);
+            this.http.post("https://bankerspoint.org/mail.php", body).subscribe(response=>{
+              console.log(response);
+            })
           })
         })
       }else{

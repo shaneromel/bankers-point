@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import { Component , Inject} from '@angular/core';
 
 import { Ng2DeviceService } from 'ng2-device-detector';
 
@@ -12,7 +13,7 @@ export class AppComponent {
   title = 'app';
   message;
 
-  constructor(private deviceService:Ng2DeviceService){
+  constructor(@Inject(WINDOW) private window: Window, private deviceService:Ng2DeviceService){
     
   }
 

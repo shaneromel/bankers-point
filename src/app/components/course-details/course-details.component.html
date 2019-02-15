@@ -49,11 +49,16 @@
 					<!-- <div *ngIf="!isSubscribed && !isFree && validityChoice" style="padding:10px;" class="col-lg-3">
             <button (click)="pay()" style="cursor:pointer;" class="btn btn-success btn-block">Buy now</button>
           </div> -->
-					<div *ngIf="isFree||isSubscribed&&days<=course.validity" style="padding:10px;" class="col-lg-3">
+					<div *ngIf="isFree||isSubscribed&&days<=validity" style="padding:10px;" class="col-lg-3">
 						<a [routerLink]="['/classroom',id]" class="btn btn-warning btn-block">Start learning</a>
           </div>
-          <div *ngIf="isSubscribed&&days>course.validity" style="padding:10px" class="col-lg-3">
-            <button (click)="pay()" class="btn btn-success btn-block">Renew</button>
+          <div *ngIf="isSubscribed&&days>validity" style="padding:10px" class="col-lg-12">
+            <!-- <button (click)="pay()" class="btn btn-success btn-block">Renew</button> -->
+            <ul class="list-group">
+              <li *ngFor="let val of course?.validities; index as i" class="list-group-item justify-content-between">{{val.validity}} days | &#8377;{{val.price | number:'0.0-0'}}
+                <button (click)="pay(i)" class="btn btn-success">Renew</button>
+              </li>
+            </ul>
           </div>
           <div *ngIf="!isSubscribed && !isFree" style="padding:10px;" class="col-lg-3">
               <a [routerLink]="['/classroom',id]" class="btn btn-secondary btn-block">Free preview</a>

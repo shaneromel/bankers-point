@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import { Component, OnInit , Inject} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
@@ -43,7 +44,7 @@ export class NavbarComponent implements OnInit {
   phone:string;
   user:any;
 
-  constructor(public afAuth:AngularFireAuth, private authService:AuthService, private studentService:StudentService, private categoryService:CategoryService, private router:Router, private toaster:ToastrService) {
+  constructor(@Inject(WINDOW) private window: Window, public afAuth:AngularFireAuth, private authService:AuthService, private studentService:StudentService, private categoryService:CategoryService, private router:Router, private toaster:ToastrService) {
   }
 
   ngOnInit() {
@@ -80,8 +81,8 @@ export class NavbarComponent implements OnInit {
 
   ngAfterViewInit(){
     var navbar = $('.navbar');
-      $(window).scroll(function(){
-          if($(window).scrollTop() <= 40){
+      $(this.window).scroll(function(){
+          if($(this.window).scrollTop() <= 40){
              navbar.css('box-shadow', 'none');
           } else {
             navbar.css('box-shadow', '0px 10px 20px rgba(0, 0, 0, 0.4)'); 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import { Component, OnInit , Inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CourseService } from '../../services/course.service';
@@ -72,9 +73,10 @@ export class ClassroomComponent implements OnInit {
     minutes:4,
     seconds:30
   };
+  pdfs:any[];
 
 
-  constructor(private courseService:CourseService, public route:ActivatedRoute, private studentService:StudentService, public router:Router, private authService:AuthService) {
+  constructor(@Inject(WINDOW) private window: Window, private courseService:CourseService, public route:ActivatedRoute, private studentService:StudentService, public router:Router, private authService:AuthService) {
     this.lec=new Array();
     this.questionState=false;
     this.curriculumState=true;
@@ -108,6 +110,12 @@ export class ClassroomComponent implements OnInit {
 
     this.sub=this.route.params.subscribe(params=>{
       this.course_id=params['course-id'];
+
+      this.courseService.getPdfs(this.course_id).subscribe(pdfs=>{
+        console.log(pdfs);
+        this.pdfs=pdfs;
+      })
+
     });
 
     this.sectionSubscription=this.courseService.getSection(this.course_id).subscribe(sections=>{
@@ -152,7 +160,7 @@ export class ClassroomComponent implements OnInit {
 
   viewPdf(i,j){
     firebase.firestore().doc("courses/"+this.course.id+"/section/"+i+"/lecture/"+j).get().then(doc=>{
-      window.location.replace(doc.data().pdf);
+      this.window.location.replace(doc.data().pdf);
     })
   }
 
@@ -221,10 +229,13 @@ export class ClassroomComponent implements OnInit {
   }
 
   changeAskquestionState(){
-    this.askQuestionState=true;
-    this.questionState=false;
-    this.curriculumState=false;
-    this.rateCourseState=false;
+    this.askQuestionState=!this.askQuestionState;
+    // this.questionState=false;
+    // this.curriculumState=false;
+    // this.rateCourseState=false;
+
+    $("#discussion-list").toggle();
+
   }
 
   changeRateCourseState(){

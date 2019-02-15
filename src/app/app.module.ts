@@ -1,3 +1,5 @@
+import { NgtUniversalModule } from '@ng-toolkit/universal';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -66,6 +68,7 @@ import { UpdatesComponent } from './components/updates/updates.component';
 import { DemoLecturesComponent } from './components/demo-lectures/demo-lectures.component';
 import { DemoLectureItemComponent } from './components/demo-lecture-item/demo-lecture-item.component';
 import { AllDemoCoursesComponent } from './components/all-demo-courses/all-demo-courses.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 const router:Routes=[
   {
@@ -198,13 +201,15 @@ const router:Routes=[
     UpdatesComponent,
     DemoLecturesComponent,
     DemoLectureItemComponent,
-    AllDemoCoursesComponent
+    AllDemoCoursesComponent,
+    SafePipe
   ],
   entryComponents:[
     OpeningDialogComponent
   ],
-  imports: [
-    BrowserModule,
+  imports:[
+ CommonModule,
+NgtUniversalModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
@@ -232,6 +237,5 @@ const router:Routes=[
     ToastrModule.forRoot()
   ],
   providers: [AuthService, AuthGuard, CourseService, StudentService, InstructorService, CategoryService, CourseBundleService, MyCoursesService],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import { Component, OnInit , Inject} from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
@@ -12,7 +13,7 @@ import {MatIconRegistry, MatDialogRef} from '@angular/material';
 })
 export class OpeningDialogComponent implements OnInit {
 
-  constructor(private dialogRef:MatDialogRef<OpeningDialogComponent>) { }
+  constructor(@Inject(WINDOW) private window: Window, private dialogRef:MatDialogRef<OpeningDialogComponent>) { }
 
   ngOnInit() {
   }
@@ -22,7 +23,7 @@ export class OpeningDialogComponent implements OnInit {
   }
 
   openPlayStore(){
-    window.location.replace("https://play.google.com/store/apps/details?id=com.gmonetix.bankerspoint");
+    this.window.location.replace("https://play.google.com/store/apps/details?id=com.gmonetix.bankerspoint");
   }
 
 }

@@ -3,5 +3,7 @@ export interface Lecture{
     pdf:string,
     title:string,
     video:string,
-    id:string
+    id:string,
+    is_demo:boolean,
+    player:string
 }

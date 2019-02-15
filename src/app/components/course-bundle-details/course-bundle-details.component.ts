@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import { Component, OnInit , Inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import * as firebase from 'firebase';
@@ -37,7 +38,7 @@ export class CourseBundleDetailsComponent implements OnInit {
   index:number;
   discount:number;
 
-  constructor(private courseBundleService:CourseBundleService, private route:ActivatedRoute, private authService:AuthService, private router:Router) {
+  constructor(@Inject(WINDOW) private window: Window, private courseBundleService:CourseBundleService, private route:ActivatedRoute, private authService:AuthService, private router:Router) {
     this.couponApplied=false;
     this.myCourseBundles=new Array();
    }
@@ -103,7 +104,7 @@ export class CourseBundleDetailsComponent implements OnInit {
 
         var validity=this.courseBundle.validities.filter(a=>a.validity==this.validityChoice)[0];
 
-        window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price+"&email="+user.email+"&course_id="+this.courseBundle.id+"&type=bundle&validity="+validity.validity);
+        this.window.location.replace("https://bankerspoint.org/payment.php?purpose="+purpose+"&amount="+this.price+"&email="+user.email+"&course_id="+this.courseBundle.id+"&type=bundle&validity="+validity.validity);
       }else{
         this.router.navigate(['/signin']);
       }

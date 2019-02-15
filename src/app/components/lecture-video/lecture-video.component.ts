@@ -40,6 +40,7 @@ export class LectureVideoComponent implements OnInit {
   videoQuality:string[];
   selectedVideoQuality:string;
   index:number;
+  url:string;
 
   loading:boolean;
 
@@ -77,8 +78,13 @@ export class LectureVideoComponent implements OnInit {
           if(lect.id===this.lectureId){
             this.lecture=lect;
             this.video=this.lecture.video;
-
-            this.loadVideo(this.video);
+          
+            if(this.lecture.player==="youtube"){
+              this.loading=false;
+              this.url="https://www.youtube.com/embed/"+this.lecture.video;
+            }else{
+              this.loadVideo(this.video);
+            }
           }
         })
       });

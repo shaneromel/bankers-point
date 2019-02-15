@@ -43,6 +43,16 @@ export class CourseService {
     })
   }
 
+  getPdfs(id:string){
+    return this.af.collection("courses/"+id+"/pdfs").snapshotChanges().map(actions=>{
+      return actions.map(a=>{
+        const data=a.payload.doc.data() as any;
+        data.id=a.payload.doc.id;
+        return data;
+      })
+    })
+  }
+
   getSection(id:string){
 
     this.courseDoc=this.af.doc<Course>('courses/'+id);
